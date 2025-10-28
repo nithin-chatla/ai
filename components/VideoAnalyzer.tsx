@@ -14,7 +14,11 @@ export const VideoAnalyzer: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
-    const handleFileChange = (file: File) => {
+    // FIX: The onFileUpload prop from FileUpload provides a FileList. This function now accepts a FileList and takes the first file.
+    const handleFileChange = (files: FileList) => {
+        const file = files[0];
+        if (!file) return;
+        
         if (!file.type.startsWith('video/')) {
             setError('Please upload a valid video file.');
             return;

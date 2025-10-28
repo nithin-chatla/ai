@@ -12,7 +12,10 @@ export const ImageEditor: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const handleFileChange = async (file: File) => {
+    // FIX: The onFileUpload prop from FileUpload provides a FileList. This function now accepts a FileList and takes the first file.
+    const handleFileChange = async (files: FileList) => {
+        const file = files[0];
+        if (!file) return;
         if (!file.type.startsWith('image/')) {
             setError('Please upload a valid image file.');
             return;

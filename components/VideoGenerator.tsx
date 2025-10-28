@@ -48,7 +48,11 @@ export const VideoGenerator: React.FC = () => {
         }
     };
 
-    const handleFileChange = async (file: File) => {
+    // FIX: The onFileUpload prop from FileUpload provides a FileList. This function now accepts a FileList and takes the first file.
+    const handleFileChange = async (files: FileList) => {
+        const file = files[0];
+        if (!file) return;
+
         if (!file.type.startsWith('image/')) {
             setError('Please upload a valid image file.');
             return;
@@ -218,7 +222,7 @@ export const VideoGenerator: React.FC = () => {
                                 className="absolute bottom-4 right-4 bg-background/70 text-white p-2 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
                                 aria-label="Download video"
                             >
-                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                             </a>
                         </div>
                     )}
