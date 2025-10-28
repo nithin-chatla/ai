@@ -1,0 +1,9 @@
+{
+  "name": "Digital Creator AI",
+  "description": "A multi-modal AI assistant that can generate websites, podcasts, images, and videos, and engage in real-time conversations. Your personal AI clone for all creative tasks.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
