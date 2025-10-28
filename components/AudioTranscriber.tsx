@@ -41,7 +41,7 @@ export const AudioTranscriber: React.FC = () => {
                 setIsLoading(true);
                 try {
                     const base64Audio = await fileToBase64(new File([audioBlob], "audio.webm"));
-                    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+                    const ai = new GoogleGenAI({ apiKey: (window as any).process.env.API_KEY as string });
                     const result = await ai.models.generateContent({
                         model: 'gemini-2.5-flash',
                         contents: {

@@ -32,7 +32,7 @@ export const ImageAnalyzer: React.FC = () => {
         setResponse(null);
 
         try {
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+            const ai = new GoogleGenAI({ apiKey: (window as any).process.env.API_KEY as string });
             const result = await ai.models.generateContent({
                 model: 'gemini-2.5-flash',
                 contents: {

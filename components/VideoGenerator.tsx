@@ -99,7 +99,8 @@ export const VideoGenerator: React.FC = () => {
         setLoadingMessage(VEO_LOADING_MESSAGES[0]);
 
         try {
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+            const apiKey = (window as any).process.env.API_KEY as string;
+            const ai = new GoogleGenAI({ apiKey });
 
             let operation = await ai.models.generateVideos({
                 model: 'veo-3.1-fast-generate-preview',
@@ -118,7 +119,7 @@ export const VideoGenerator: React.FC = () => {
             const downloadLink = finalOperation.response?.generatedVideos?.[0]?.video?.uri;
 
             if (downloadLink) {
-                const response = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
+                const response = await fetch(`${downloadLink}&key=${apiKey}`);
                 const blob = await response.blob();
                 setVideoUrl(URL.createObjectURL(blob));
             } else {

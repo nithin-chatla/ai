@@ -84,7 +84,7 @@ export const VideoAnalyzer: React.FC = () => {
                 }
             }
             
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+            const ai = new GoogleGenAI({ apiKey: (window as any).process.env.API_KEY as string });
             
             const frameParts = frames.map(frame => ({
                 inlineData: {

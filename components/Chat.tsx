@@ -28,7 +28,7 @@ export const Chat: React.FC = () => {
 
     const initializeChat = useCallback((currentMode: ChatMode) => {
         setIsLoading(true);
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+        const ai = new GoogleGenAI({ apiKey: (window as any).process.env.API_KEY as string });
         let model: string;
         switch (currentMode) {
             case 'Pro': model = 'gemini-2.5-pro'; break;
@@ -62,7 +62,7 @@ export const Chat: React.FC = () => {
 
         try {
             if (mode === 'Search' || mode === 'Maps') {
-                 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+                 const ai = new GoogleGenAI({ apiKey: (window as any).process.env.API_KEY as string });
                 const tools = [];
                 if (mode === 'Search') tools.push({ googleSearch: {} });
                 if (mode === 'Maps') tools.push({ googleMaps: {} });

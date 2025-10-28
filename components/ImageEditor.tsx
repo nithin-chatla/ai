@@ -33,7 +33,7 @@ export const ImageEditor: React.FC = () => {
         setEditedImage(null);
 
         try {
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+            const ai = new GoogleGenAI({ apiKey: (window as any).process.env.API_KEY as string });
             const response = await ai.models.generateContent({
                 model: 'gemini-2.5-flash-image',
                 contents: {

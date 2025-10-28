@@ -20,7 +20,7 @@ export const ImageGenerator: React.FC = () => {
     setImage(null);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+      const ai = new GoogleGenAI({ apiKey: (window as any).process.env.API_KEY as string });
       const response = await ai.models.generateImages({
         model: 'imagen-4.0-generate-001',
         prompt,

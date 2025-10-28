@@ -24,7 +24,7 @@ export const WebsiteCreator: React.FC = () => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+        const ai = new GoogleGenAI({ apiKey: (window as any).process.env.API_KEY as string });
         const newChat = ai.chats.create({
             model: 'gemini-2.5-pro',
             config: {
